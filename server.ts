@@ -132,15 +132,15 @@ app.get('/api/git/download-zip', async (_req: Request, res: Response) => {
     
     // Ensure git repo is ready
     if (!fs.existsSync(path.join(appDir, '.git'))) {
-      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl" && git add -A && git commit -m "feat: VastgoedPulse codebase"', { cwd: appDir });
+      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl" && git add -A && git commit -m "feat: VastgoedPulse codebase"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
     } else {
       try {
-        execSync('git add -A && git commit -m "feat: update VastgoedPulse codebase"', { cwd: appDir });
+        execSync('git add -A && git commit -m "feat: update VastgoedPulse codebase"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
       } catch (_) {}
     }
 
     const zipPath = '/tmp/vastgoedpulse-latest.zip';
-    execSync(`git archive --format=zip -o ${zipPath} HEAD`, { cwd: appDir });
+    execSync(`git archive --format=zip -o ${zipPath} HEAD`, { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
     
     res.setHeader('Content-Type', 'application/zip');
     res.setHeader('Content-Disposition', 'attachment; filename="vastgoedpulse-nl.zip"');
@@ -166,13 +166,13 @@ app.post('/api/git/push-github', async (req: Request, res: Response) => {
 
     // Ensure git repo is initialized and has commits
     if (!fs.existsSync(path.join(appDir, '.git'))) {
-      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir });
-      execSync('git add -A && git commit -m "feat: VastgoedPulse NL initial commit"', { cwd: appDir });
+      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
+      execSync('git add -A && git commit -m "feat: VastgoedPulse NL initial commit"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
     } else {
-      execSync('git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir });
+      execSync('git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
       try {
-        execSync('git branch -M main', { cwd: appDir });
-        execSync('git add -A && git commit -m "feat: update VastgoedPulse NL codebase"', { cwd: appDir });
+        execSync('git branch -M main', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
+        execSync('git add -A && git commit -m "feat: update VastgoedPulse NL codebase"', { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
       } catch (_) {}
     }
 
@@ -185,20 +185,33 @@ app.post('/api/git/push-github', async (req: Request, res: Response) => {
       ? `https://${encodeURIComponent(token.trim())}@${targetUrl}`
       : `https://${targetUrl}`;
 
-    try {
-      execSync('git remote remove origin', { cwd: appDir });
-    } catch (_) {}
-    
-    execSync(`git remote add origin "${authRemote}"`, { cwd: appDir });
-    const output = execSync('git push -u origin main --force', { cwd: appDir }).toString();
+    // Safely check and configure origin remote without stderr noise
+    const existingRemotes = execSync('git remote', { cwd: appDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] })
+      .split('\n')
+      .map(r => r.trim());
+
+    if (existingRemotes.includes('origin')) {
+      execSync(`git remote set-url origin "${authRemote}"`, { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
+    } else {
+      execSync(`git remote add origin "${authRemote}"`, { cwd: appDir, stdio: ['pipe', 'pipe', 'pipe'] });
+    }
+
+    const output = execSync('git push -u origin main --force', { 
+      cwd: appDir, 
+      stdio: ['pipe', 'pipe', 'pipe'],
+      encoding: 'utf8'
+    });
 
     return res.json({
       success: true,
       message: 'Succesvol gepusht naar je GitHub repository!',
-      output
+      output: (output || '').toString()
     });
   } catch (err: any) {
-    const stderr = err.stderr ? err.stderr.toString() : err.message;
+    let stderr = (err.stderr ? err.stderr.toString() : err.message || '').trim();
+    if (token) {
+      stderr = stderr.replaceAll(token.trim(), '***TOKEN***');
+    }
     return res.status(500).json({ 
       error: 'Pushen naar GitHub mislukt: ' + stderr
     });
