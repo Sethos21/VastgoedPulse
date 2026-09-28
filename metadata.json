@@ -1,0 +1,6 @@
+{
+  "name": "VastgoedPulse NL - Realtime Vastgoed Data Dashboard",
+  "description": "Interactief realtime dashboard voor vastgoedmarktanalyse, transacties, rendementen, kaartvisualisatie en investeringscalculaties.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

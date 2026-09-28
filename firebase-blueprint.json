@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "Property": {
+      "title": "Property",
+      "description": "Vastgoedobject in Nederland geregistreerd in het aanbod en dashboard",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "address": { "type": "string", "maxLength": 200 },
+        "city": { "type": "string", "maxLength": 100 },
+        "postalCode": { "type": "string", "maxLength": 20 },
+        "district": { "type": "string", "maxLength": 100 },
+        "type": { "type": "string", "maxLength": 50 },
+        "price": { "type": "number" },
+        "areaM2": { "type": "number" },
+        "pricePerM2": { "type": "number" },
+        "annualRent": { "type": "number" },
+        "barYield": { "type": "number" },
+        "narYield": { "type": "number" },
+        "energyLabel": { "type": "string", "maxLength": 10 },
+        "constructionYear": { "type": "number" },
+        "status": { "type": "string", "maxLength": 50 },
+        "cadastralCode": { "type": "string", "maxLength": 100 },
+        "wozValue": { "type": "number" },
+        "monthlyHoaFee": { "type": "number" },
+        "projectedGrowth": { "type": "number" },
+        "rooms": { "type": "number" },
+        "bedrooms": { "type": "number" },
+        "brokerName": { "type": "string", "maxLength": 150 },
+        "fundaUrl": { "type": "string", "maxLength": 500 },
+        "daysOnMarket": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "title", "address", "city", "price", "status"]
+    },
+    "KadasterReport": {
+      "title": "KadasterReport",
+      "description": "Aanvraag en uittreksel van een officieel Kadaster BRK/BAG verificatierapport",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "propertyId": { "type": "string", "maxLength": 128 },
+        "address": { "type": "string", "maxLength": 200 },
+        "city": { "type": "string", "maxLength": 100 },
+        "cadastralCode": { "type": "string", "maxLength": 100 },
+        "ownerType": { "type": "string", "maxLength": 50 },
+        "lastPurchasePrice": { "type": "number" },
+        "mortgageAmount": { "type": "number" },
+        "mortgageHolder": { "type": "string", "maxLength": 150 },
+        "status": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "propertyId", "address", "cadastralCode"]
+    },
+    "MarketAlert": {
+      "title": "MarketAlert",
+      "description": "Actieve zoek- of rendementsnotificatie voor nieuwe panden",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "city": { "type": "string", "maxLength": 100 },
+        "minYield": { "type": "number" },
+        "maxPrice": { "type": "number" },
+        "email": { "type": "string", "maxLength": 200 },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "title", "city"]
+    }
+  },
+  "firestore": {
+    "/properties/{propertyId}": {
+      "schema": { "$ref": "#/entities/Property" },
+      "description": "Publiek raadpleegbare en realtime gesynchroniseerde vastgoedobjecten"
+    },
+    "/kadaster_reports/{reportId}": {
+      "schema": { "$ref": "#/entities/KadasterReport" },
+      "description": "Gearchiveerde Kadaster rapporten en dossiers"
+    },
+    "/alerts/{alertId}": {
+      "schema": { "$ref": "#/entities/MarketAlert" },
+      "description": "Vastgoed alerts en markttriggers"
+    }
+  }
+}

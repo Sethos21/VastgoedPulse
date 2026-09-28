@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default-deny all unlisted paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Connection testing endpoint required by system boot
+    match /test/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Properties Collection (Vastgoedobjecten & Actueel Aanbod)
+    match /properties/{propertyId} {
+      allow get, list: if true;
+      
+      allow create: if isValidId(propertyId) 
+        && incoming().id is string
+        && incoming().title is string && incoming().title.size() <= 200
+        && incoming().address is string && incoming().address.size() <= 200
+        && incoming().city is string && incoming().city.size() <= 100
+        && incoming().price is number;
+
+      allow update: if isValidId(propertyId)
+        && incoming().id == existing().id
+        && incoming().title is string && incoming().title.size() <= 200
+        && incoming().price is number;
+
+      allow delete: if isSignedIn();
+    }
+
+    // Kadaster Reports (Eigendoms- en Koopsommendossiers)
+    match /kadaster_reports/{reportId} {
+      allow get, list: if true;
+      
+      allow create: if isValidId(reportId)
+        && incoming().propertyId is string
+        && incoming().address is string;
+
+      allow update: if false; // Akten en uittreksels zijn onveranderlijk
+      allow delete: if isSignedIn();
+    }
+
+    // Market Alerts & Notificaties
+    match /alerts/{alertId} {
+      allow get, list: if true;
+
+      allow create: if isValidId(alertId)
+        && incoming().title is string
+        && incoming().city is string;
+
+      allow update: if isValidId(alertId);
+      allow delete: if true;
+    }
+  }
+}
