@@ -128,8 +128,19 @@ app.get('/api/pdok/bag', async (req: Request, res: Response) => {
 app.get('/api/git/download-zip', async (_req: Request, res: Response) => {
   try {
     const { execSync } = await import('child_process');
+    const appDir = __dirname;
+    
+    // Ensure git repo is ready
+    if (!fs.existsSync(path.join(appDir, '.git'))) {
+      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl" && git add -A && git commit -m "feat: VastgoedPulse codebase"', { cwd: appDir });
+    } else {
+      try {
+        execSync('git add -A && git commit -m "feat: update VastgoedPulse codebase"', { cwd: appDir });
+      } catch (_) {}
+    }
+
     const zipPath = '/tmp/vastgoedpulse-latest.zip';
-    execSync(`git archive --format=zip -o ${zipPath} HEAD`);
+    execSync(`git archive --format=zip -o ${zipPath} HEAD`, { cwd: appDir });
     
     res.setHeader('Content-Type', 'application/zip');
     res.setHeader('Content-Disposition', 'attachment; filename="vastgoedpulse-nl.zip"');
@@ -148,8 +159,23 @@ app.post('/api/git/push-github', async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'GitHub repository URL is verplicht' });
   }
 
+  const appDir = __dirname;
+
   try {
     const { execSync } = await import('child_process');
+
+    // Ensure git repo is initialized and has commits
+    if (!fs.existsSync(path.join(appDir, '.git'))) {
+      execSync('git init && git branch -M main && git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir });
+      execSync('git add -A && git commit -m "feat: VastgoedPulse NL initial commit"', { cwd: appDir });
+    } else {
+      execSync('git config user.name "Seth Beukelaar" && git config user.email "seth@beukelaargroep.nl"', { cwd: appDir });
+      try {
+        execSync('git branch -M main', { cwd: appDir });
+        execSync('git add -A && git commit -m "feat: update VastgoedPulse NL codebase"', { cwd: appDir });
+      } catch (_) {}
+    }
+
     let targetUrl = repoUrl.trim();
     if (targetUrl.startsWith('https://')) {
       targetUrl = targetUrl.replace('https://', '');
@@ -159,18 +185,22 @@ app.post('/api/git/push-github', async (req: Request, res: Response) => {
       ? `https://${encodeURIComponent(token.trim())}@${targetUrl}`
       : `https://${targetUrl}`;
 
-    execSync(`git remote remove origin || true`);
-    execSync(`git remote add origin "${authRemote}"`);
-    const output = execSync(`git push -u origin main --force`).toString();
+    try {
+      execSync('git remote remove origin', { cwd: appDir });
+    } catch (_) {}
+    
+    execSync(`git remote add origin "${authRemote}"`, { cwd: appDir });
+    const output = execSync('git push -u origin main --force', { cwd: appDir }).toString();
 
     return res.json({
       success: true,
-      message: 'Succesvol gepusht naar GitHub repository!',
+      message: 'Succesvol gepusht naar je GitHub repository!',
       output
     });
   } catch (err: any) {
+    const stderr = err.stderr ? err.stderr.toString() : err.message;
     return res.status(500).json({ 
-      error: 'Pushen naar GitHub mislukt: ' + (err.stderr ? err.stderr.toString() : err.message)
+      error: 'Pushen naar GitHub mislukt: ' + stderr
     });
   }
 });

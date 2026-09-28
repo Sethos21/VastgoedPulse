@@ -7,7 +7,7 @@ interface GitExportModalProps {
 }
 
 export const GitExportModal: React.FC<GitExportModalProps> = ({ isOpen, onClose }) => {
-  const [repoUrl, setRepoUrl] = useState('');
+  const [repoUrl, setRepoUrl] = useState('https://github.com/Sethos21/VastgoedPulse.git');
   const [githubToken, setGithubToken] = useState('');
   const [isPushing, setIsPushing] = useState(false);
   const [pushStatus, setPushStatus] = useState<{ success: boolean; message: string } | null>(null);
@@ -45,7 +45,7 @@ export const GitExportModal: React.FC<GitExportModalProps> = ({ isOpen, onClose 
       } else {
         setPushStatus({
           success: false,
-          message: data.error || 'Pushen mislukt. Controleer repository URL en rechten.',
+          message: data.error || 'Pushen mislukt. Controleer token permissies (repo write) en URL.',
         });
       }
     } catch (err: any) {
@@ -58,14 +58,18 @@ export const GitExportModal: React.FC<GitExportModalProps> = ({ isOpen, onClose 
     }
   };
 
-  const terminalScript = `# Stap 1: Pak de gedownloade ZIP uit en ga naar de map
+  const terminalScript = `# Stap 1: Pak de ZIP uit en open je terminal in de map
 cd vastgoedpulse-nl
 
-# Stap 2: Koppel aan je eigen nieuwe GitHub repo
-git remote add origin https://github.com/JOUW-ACCOUNT/REPO-NAAM.git
+# Stap 2: Initialiseer Git en voeg alle bestanden toe
+git init
+git branch -M main
+git add .
+git commit -m "feat: VastgoedPulse NL complete platform"
 
-# Stap 3: Push alle code en commits naar de main branch
-git push -u origin main`;
+# Stap 3: Koppel aan je GitHub repo en push
+git remote add origin https://github.com/Sethos21/VastgoedPulse.git
+git push -u origin main --force`;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(terminalScript);
