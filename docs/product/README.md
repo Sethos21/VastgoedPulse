@@ -27,6 +27,7 @@ Documenten maken waar relevant onderscheid tussen:
 - `04_MONETISATIE_EN_ABONNEMENTEN.md`
 
 - `05_PRO_NETTO_RENDEMENTSANALYSE.md`
+- `09_ONTWERP_BESLISSINGSONDERSTEUNING_EN_SCENARIOANALYSE.md` — **Ontwerp/backlog**: scenariovergelijking, break-evenanalyse, financieringsverdieping, gevoeligheid en beslissingsondersteuning; nog geen implementatieopdracht.
 
 ## Huidige status
 - `02_FREE_VERSUS_PRO.md` — **Vastgesteld**: productladder Anoniem → Free → Pro, zachte Pro-paywall en startprijs €5 per maand.
