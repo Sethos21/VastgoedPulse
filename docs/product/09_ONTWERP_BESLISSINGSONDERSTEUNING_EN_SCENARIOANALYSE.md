@@ -182,3 +182,163 @@ De volgende ontwerpstap is het functioneel uitwerken van de financieringsanalyse
 - invloed van de financieringsstructuur op eigen inleg, cashflow, NCW en IRR.
 
 Deze punten zijn ontwerpvragen en nog geen vastgestelde implementatie-eisen.
+
+
+## 15. Concurrentie-inzichten en aanbodstrategie
+
+### 15.1 Concurrentiebenchmark
+De belangrijkste functionele benchmarks zijn:
+- PropertyMetrics: professionele acquisitie-/underwritinganalyse met DCF, IRR/NPV, debt sizing, DSCR, debt yield, sensitiviteit en rapportage;
+- ARGUS Enterprise: institutionele benchmark voor lease-by-lease cashflow, schuldmodellering en scenarioanalyse;
+- Planon/Reasult: Nederlandse professionele vastgoedplanning en scenarioanalyse;
+- Bloqhouse: investeerders-/kapitaalplatform met onboarding, proposities, betalingen en leningbeheer.
+
+VastgoedPulse moet niet als Nederlandse ARGUS-kloon worden ontworpen. De gewenste positie is:
+**professionele kernberekeningen + Nederlandse vastgoedcontext + actuele dealflow + eenvoudige UX + begrijpelijke uitleg.**
+
+### 15.2 Nieuwe financierings-KPI's uit concurrentieonderzoek
+Aan het financieringsontwerp toevoegen:
+- **Debt Yield** als primaire financierings-KPI naast LTV en DSCR;
+- **Break-even occupancy** als relevante risico-/break-evenmaatstaf;
+- ICR blijft aanvullend en is niet primair bepalend voor maximale financiering.
+
+Deze onderdelen worden functioneel verder uitgewerkt voordat ze implementatie-eisen worden.
+
+### 15.3 Aanbodstrategie
+VastgoedPulse moet niet volledig afhankelijk worden van één marktplaats of één dataprovider.
+
+Te onderzoeken bronnen:
+- Funda in Business;
+- RealNext;
+- makelaarsfeeds / XML-feeds;
+- openbare objectbronnen;
+- commerciële dataproviders;
+- directe gebruikersinvoer;
+- URL-import.
+
+Doel is een brononafhankelijke objectlaag waarin data uit verschillende bronnen naar één intern objectmodel wordt genormaliseerd.
+
+## 16. Handmatig object toevoegen via URL
+
+Naast automatisch ingeladen aanbod moet de gebruiker een object handmatig kunnen toevoegen.
+
+### 16.1 Primaire flow
+1. gebruiker kiest **Object toevoegen**;
+2. eerste invoerveld is een URL naar een online vastgoedadvertentie of publiek toegankelijke objectpagina;
+3. VastgoedPulse probeert automatisch publiek beschikbare objectinformatie van die URL op te halen;
+4. herkende gegevens worden vooraf ingevuld;
+5. de gebruiker controleert en corrigeert deze gegevens;
+6. ontbrekende velden worden handmatig aangevuld;
+7. het object wordt opgeslagen als regulier analyse-object en kan vervolgens door de bestaande rekenmodules worden gebruikt.
+
+### 16.2 Te herkennen gegevens
+Waar beschikbaar:
+- adres en plaats;
+- vraagprijs;
+- objecttype;
+- oppervlakte;
+- jaarhuur / huurprijs;
+- gepubliceerd BAR;
+- energielabel;
+- bouwjaar;
+- foto / bronverwijzing;
+- makelaar;
+- overige relevante advertentiegegevens.
+
+### 16.3 Functionele regels
+- bron-URL blijft aan het object gekoppeld;
+- zichtbaar onderscheid tussen automatisch opgehaalde en handmatig ingevoerde data;
+- ontbrekende data nooit gokken;
+- alleen publiek toegankelijke informatie ophalen;
+- gebruiker kan iedere automatisch opgehaalde waarde corrigeren;
+- URL-import mag niet hard afhankelijk zijn van één website;
+- volledig handmatige objectinvoer blijft later als fallback mogelijk;
+- hergebruik zoveel mogelijk het bestaande centrale Property/objectmodel.
+
+## 17. Vastgestelde financieringsscenario-richting
+
+Voor één aankoop kunnen maximaal **drie financieringsscenario's** worden vergeleken.
+
+### 17.1 Generatie
+- gebruiker voert één basisscenario in;
+- VastgoedPulse kan automatisch maximaal twee alternatieve scenario's genereren;
+- automatisch gegenereerde scenario's blijven handmatig aanpasbaar.
+
+### 17.2 Variabelen voor alternatieven
+Automatische variatie mag primair plaatsvinden op:
+- rente;
+- aflossingsvorm;
+- looptijd.
+
+Ondersteunde aflossingsvormen:
+- aflossingsvrij;
+- lineair;
+- annuïtair.
+
+Geen renteherziening binnen één scenario; één gekozen rentepercentage geldt gedurende de volledige scenario-looptijd.
+
+### 17.3 Maximale financiering
+VastgoedPulse moet de maximaal haalbare financiering vanuit minimaal twee invalshoeken kunnen bepalen:
+- onderpand-/waardetoets;
+- kasstroomtoets.
+
+De meest beperkende uitkomst moet expliciet zichtbaar zijn.
+
+### 17.4 LTV-grondslag
+- aankoopprijs en taxatiewaarde worden afzonderlijk opgeslagen;
+- standaard LTV-grondslag = de laagste van aankoopprijs en taxatiewaarde;
+- gebruiker kan deze grondslag handmatig overschrijven;
+- financiering wordt in dit ontwerp uitsluitend gebaseerd op vastgoedwaarde, niet op overdrachtsbelasting of overige aankoopkosten.
+
+### 17.5 Financieringsnormen
+Per analyse instelbaar:
+- maximale LTV;
+- minimale DSCR;
+- later ook Debt Yield-doel/norm indien functioneel vastgesteld.
+
+DSCR:
+- per jaar berekenen;
+- laagste DSCR over de gehele looptijd expliciet tonen;
+- laagste DSCR gebruiken als relevante stresstoets.
+
+ICR:
+- aanvullend kengetal;
+- niet primair bepalend voor maximale financiering.
+
+## 18. Marktscenario's voor investeringsrobustheid
+
+Naast financieringsscenario's worden drie marktscenario's onderzocht:
+- **zwak**;
+- **redelijk / basis**;
+- **uitstekend**.
+
+De gebruiker vult het basisscenario in. Zwak en uitstekend worden automatisch afgeleid met vooraf vastgestelde bandbreedtes om de invoer eenvoudig te houden.
+
+Mogelijke variabelen:
+- huurontwikkeling;
+- leegstand / huuruitval;
+- exit-BAR;
+- exploitatiekosten;
+- relevante investeringen.
+
+Per scenario moeten naast de rekenuitkomsten ook de belangrijkste **sterktes, zwaktes en risicofactoren** inzichtelijk worden gemaakt.
+
+VastgoedPulse geeft hierbij geen automatisch koop-/niet-kopenadvies.
+
+## 19. Betaalde What-if- en herfinancieringsfunctie
+
+De **What-if-functie** wordt gepositioneerd als betaalde functionaliteit.
+
+Ondersteunde richtingen:
+- rente verhogen/verlagen met x procentpunt;
+- effect tonen op cashflow, DSCR, NCW en IRR;
+- vervroegd aflossen;
+- lening voortijdig aflossen en herfinancieren;
+- boeterente invoeren;
+- afsluitkosten invoeren.
+
+Bediening:
+- handmatige invoer;
+- eenvoudige slider-achtige bediening voor snelle gevoeligheidsanalyse.
+
+Doel is snel inzicht in het effect van één of enkele gewijzigde financieringsaannames, zonder de hoofdscenario's onnodig complex te maken.
