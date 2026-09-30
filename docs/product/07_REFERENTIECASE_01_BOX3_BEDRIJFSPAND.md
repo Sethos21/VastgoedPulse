@@ -198,3 +198,41 @@ Een voorstel of beleidsvoornemen mag nooit als geldend recht worden gepresenteer
 
 ### Doel
 De nieuwsfeed ondersteunt de betrouwbaarheid en actualiteit van VastgoedPulse: gebruikers kunnen zien welke recente besluiten of wijzigingen mogelijk invloed hebben op de aannames en fiscale parameters van hun vastgoedanalyse.
+
+
+## 12. Definitief afgetikte rekenkeuzes
+
+### 12.1 Exit-BAR
+- Voor bedrijfsmatig vastgoed is exit-BAR de leidende eindwaardemethode.
+- Default exit-BAR = BAR bij aankoop.
+- De gebruiker kan de exit-BAR handmatig aanpassen.
+- De gekozen exit-BAR bepaalt de hoofdcalculatie.
+- VastgoedPulse toont automatisch een compacte gevoeligheidsanalyse op:
+  - gekozen exit-BAR − 0,5 procentpunt;
+  - gekozen exit-BAR;
+  - gekozen exit-BAR + 0,5 procentpunt.
+- De gevoeligheidsanalyse is informatief en creëert geen drie afzonderlijke hoofdscenario's.
+
+### 12.2 Leegstand / huuruitval
+- Invoer: één percentage **verwachte huuruitval**.
+- Default: **0%**.
+- Huuruitval verlaagt de effectieve jaarlijkse huurinkomsten en daarmee cashflow/rendement.
+- Algemene verwachte huuruitval verlaagt niet automatisch de contractuele/geannualiseerde huur die voor de exit-BAR-waardering wordt gebruikt.
+- Een veronderstelde feitelijke leegstand bij verkoop is een afzonderlijke situatie en mag niet impliciet uit het algemene huuruitvalpercentage worden afgeleid.
+
+### 12.3 Forfaitair versus werkelijk rendement
+- VastgoedPulse berekent beide methoden achter de schermen.
+- De hoofdweergave gebruikt het laagste toepasselijke Box 3-effect volgens de gemodelleerde regels.
+- De gebruikte methode wordt expliciet vermeld.
+- Via **Bekijk fiscale berekening** kan de gebruiker beide uitkomsten en de relevante tussenstappen naast elkaar bekijken.
+- De keuze van de rekenmotor wordt als rekenkundige/fiscale scenario-uitkomst gepresenteerd en niet als persoonlijk fiscaal advies.
+
+### 12.4 Afronding en precisie
+- De rekenmotor rondt tussentijds niet af.
+- Alle tussenberekeningen gebruiken de beschikbare interne precisie.
+- Geldbedragen worden uitsluitend voor presentatie afgerond op hele euro's, zonder decimalen.
+- Reguliere ingevoerde/getoonde percentages worden standaard met één decimaal weergegeven, bijvoorbeeld 8,0%, 4,5% en 2,0%.
+- Berekende rendements-KPI's waarbij extra precisie nuttig is, waaronder IRR, worden met twee decimalen weergegeven.
+- Golden tests vergelijken ongeronde interne uitkomsten met een kleine technische tolerantie om floating-pointverschillen niet als functionele fout te behandelen.
+
+Met deze besluiten zijn de eerder openstaande rekenkeuzes uit paragraaf 10 functioneel afgesloten.
