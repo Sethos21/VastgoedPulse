@@ -192,3 +192,54 @@ Voor de leidende referentiecase van het fictieve bedrijfspand geldt voortaan:
 - aflossing wordt alleen als alternatief gebruikersscenario doorgerekend.
 
 De eerder gebruikte standaard van €30.000 lineaire aflossing per jaar is **vervallen als leidend uitgangspunt** en mag niet als productdefault worden gebruikt.
+
+
+## 12. Verduurzaming en achterstallig onderhoud — vastgesteld ontwerpbesluit
+
+Verduurzaming en achterstallig onderhoud worden als twee afzonderlijke invoer- en rekenblokken behandeld. Ze mogen niet worden samengevoegd met de standaard exploitatiekosten van 15% van de huur.
+
+### Verduurzaming
+Invoer ondersteunt minimaal:
+- investeringsbedrag;
+- uitvoeringsjaar;
+- extra jaarlijkse huur als gevolg van verduurzaming;
+- ingangsjaar van de extra huur;
+- optionele aanvullende financiering;
+- rentepercentage;
+- aflossingsvorm/looptijd/restschuld wanneer van toepassing;
+- optionele directe waardecorrectie indien deze aantoonbaar losstaat van de huurimpact.
+
+Voor bedrijfsmatig vastgoed is de huurimpact leidend. Structurele extra huur werkt door in exploitatie, cashflow en via de exit-BAR in de eindwaarde.
+
+**Anti-dubbeltelling:** wanneer extra huur via de exit-BAR al tot een hogere eindwaarde leidt, wordt een directe waardeverhoging niet automatisch nogmaals boven op de eindwaarde gezet.
+
+Verduurzaming kan afzonderlijk financierbaar zijn. Aanvullende financiering staat standaard uit en wordt alleen meegenomen wanneer de gebruiker deze activeert.
+
+### Achterstallig onderhoud
+Invoer ondersteunt minimaal:
+- investeringsbedrag;
+- uitvoeringsjaar.
+
+Standaard geldt:
+- betaling uit eigen middelen;
+- geen automatische huurverhoging;
+- geen automatische directe waardeverhoging;
+- geen automatische fiscale aftrek in de Box 3-route.
+
+Financiering van achterstallig onderhoud kan later als optionele mogelijkheid worden ondersteund, maar is geen productdefault.
+
+### Golden testcase — vastgestelde waarden
+Voor Referentiecase 01:
+- verduurzaming: **€75.000**;
+- uitvoering verduurzaming: **bij aanvang**;
+- extra jaarhuur door verduurzaming: **€6.000 vanaf jaar 2**;
+- verduurzaming volledig aanvullend gefinancierd: **€75.000**;
+- rente aanvullende financiering: **4,5%**;
+- aanvullende financiering standaard aflossingsvrij in deze testcase;
+- achterstallig onderhoud: **€25.000**;
+- uitvoering achterstallig onderhoud: **bij aanvang**;
+- achterstallig onderhoud uit eigen middelen;
+- geen huurverhoging door achterstallig onderhoud;
+- geen directe waardeverhoging als aparte aanname in deze testcase.
+
+Doel: in één referentiecase testen dat huurimpact, aanvullende financiering, operationele cashflow, fiscale verwerking en exit-BAR correct samenwerken zonder dubbeltelling.
