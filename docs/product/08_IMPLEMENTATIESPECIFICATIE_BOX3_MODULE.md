@@ -489,3 +489,156 @@ Bij conflict geldt:
 5. bestaande calculatorcode.
 
 Bestaande code is dus nooit leidend wanneer die botst met de vastgestelde productspecificatie.
+
+
+## 25. UX-uitleg en dynamische rapportagetoelichting — vastgesteld na praktijktest
+
+**Aanleiding:** praktijktest met Waalhaven Logistiek Distributiecentrum.
+
+De rekenmodule toont professionele financiële en fiscale begrippen. Correcte cijfers alleen zijn onvoldoende: de gebruiker moet zowel tijdens invoer/analyse als in de uiteindelijke rapportage kunnen begrijpen wat een begrip betekent en hoe het concrete scenario tot de getoonde uitkomst leidt.
+
+### 25.1 Twee uitleg-lagen
+
+Implementeer dezelfde inhoudelijke uitleg op twee niveaus:
+
+1. **Korte context in de applicatie**
+   - gebruik een herkenbare info-knop/ⓘ bij financiële/fiscale KPI's, vaktermen en belangrijke scenarioaannames;
+   - tooltip/popover in gewone Nederlandse taal;
+   - kort genoeg om de workflow niet te onderbreken;
+   - waar nuttig mag een verdere uitleg worden geopend.
+
+2. **Uitgebreide toelichting in de rapportage**
+   - voeg onderin iedere uitgebreide Box 3-rapportage een vaste sectie toe: **Toelichting op de berekening**;
+   - deze toelichting is dynamisch opgebouwd uit het daadwerkelijk doorgerekende scenario;
+   - uitleg combineert definitie, gebruikte aanname, concrete scenariowaarden, rekenverband en betekenis van de uitkomst;
+   - bedragen en percentages moeten exact afkomstig zijn uit de deterministische rekenengine en mogen niet door generatieve AI opnieuw worden berekend.
+
+### 25.2 Begrippen die minimaal uitleg krijgen
+
+Minimaal:
+- BAR;
+- exit-BAR;
+- jaarhuur voor verkoopwaardering / geannualiseerde jaar-11-huur;
+- fiscale/objectwaarde;
+- verwachte verkoopwaarde;
+- netto verkoopopbrengst;
+- restschuld;
+- NCW;
+- rendementseis/discontovoet;
+- IRR;
+- netto cashflow;
+- forfaitair Box 3-effect;
+- werkelijk rendement;
+- toegepaste fiscale route;
+- rendementsgrondslag en andere zichtbare fiscale tussenbegrippen;
+- aflossing versus operationele kosten.
+
+Deze lijst is minimum, geen maximum: ieder niet-vanzelfsprekend financieel/fiscaal begrip dat zichtbaar wordt, moet begrijpelijke context kunnen krijgen.
+
+### 25.3 NCW-presentatie
+
+Vervang waar mogelijk technische labels als **NCW Disconto (%)** door begrijpelijker taal:
+
+**Rendementseis voor NCW (%)**
+
+KPI:
+**NCW (bij {rendementseis}% rendementseis)**
+
+Korte uitleg:
+De NCW rekent toekomstige netto kasstromen, inclusief netto verkoopopbrengst, terug naar hun waarde vandaag. Een positieve NCW betekent dat het scenario boven de gekozen rendementseis een positieve contante meerwaarde laat zien.
+
+De rapportage moet dit vervolgens toepassen op het concrete scenario en benoemen:
+- gekozen rendementseis;
+- analyseperiode;
+- initiële eigen investering;
+- relevante toekomstige cashflows;
+- netto verkoopopbrengst;
+- berekende NCW;
+- betekenis van positief, nul of negatief.
+
+NCW is geen eindbedrag in jaar 10 en mag niet zo worden gepresenteerd.
+
+### 25.4 Exit-BAR-presentatie
+
+Bij het exit-BAR-veld:
+- info-knop;
+- toon bij voorkeur tevens de BAR bij aankoop als referentie;
+- leg uit dat de default exit-BAR gelijk is aan BAR bij aankoop, tenzij gebruiker deze wijzigt;
+- leg uit dat hogere exit-BAR een lagere verkoopwaarde geeft en lagere exit-BAR een hogere verkoopwaarde;
+- benoem exit-BAR als scenarioaanname, niet als voorspelling.
+
+De rapportage beschrijft de werkelijk gekozen exit-BAR, de gebruikte huur voor verkoopwaardering, de daaruit berekende verkoopwaarde, verkoopkosten, restschuld en netto verkoopopbrengst.
+
+### 25.5 Jaarhuur voor verkoopwaardering
+
+Gebruik in de primaire UI bij voorkeur:
+**Jaarhuur voor verkoopwaardering**
+
+In technische detailuitleg mag worden vermeld dat dit de geannualiseerde jaar-11-huur is.
+
+Leg uit:
+Dit is de verwachte structurele jaarhuur die geldt bij verkoop aan het einde van jaar 10 en die samen met de exit-BAR wordt gebruikt om de verkoopwaarde te bepalen.
+
+### 25.6 Dynamische rapportagetekst
+
+De rapportagesectie **Toelichting op de berekening** bevat minimaal afzonderlijke toelichtingen op:
+1. aankoop en initiële eigen inleg;
+2. financiering en eventuele aflossing;
+3. huurontwikkeling, huuruitval en exploitatiecashflow;
+4. verduurzaming en/of achterstallig onderhoud indien van toepassing;
+5. Box 3-objectscenario en toegepaste fiscale methode;
+6. fiscale/objectwaarde;
+7. NCW en gekozen rendementseis;
+8. IRR;
+9. exit-BAR en verkoopwaardering;
+10. verkoopkosten, restschuld en netto verkoopopbrengst;
+11. belangrijkste scenarioaannames en beperkingen.
+
+De tekst moet scenario-afhankelijk zijn: niet-relevante onderdelen worden niet kunstmatig beschreven.
+
+### 25.7 Geen generatieve rekenlogica
+
+De rapportage-uitleg mag template-/regelgestuurd of met AI worden geformuleerd, maar:
+- alle cijfers komen uit de rekenengine;
+- AI mag geen bedragen, percentages, jaren of fiscale uitkomsten opnieuw berekenen;
+- AI mag geen ontbrekende waarden verzinnen;
+- rapportage en dashboard moeten dezelfde onderliggende scenario-output gebruiken;
+- bij ontbrekende waarden moet de tekst dit overslaan of expliciet als ontbrekend aangeven;
+- generatieve formulering mag de betekenis van de berekening niet wijzigen.
+
+### 25.8 Voorbeeld toepassing Waalhaven
+
+Bij een scenario met bijvoorbeeld NCW +€493.123 bij 5,0% rendementseis moet de toelichting duidelijk maken dat dit geen eindbedrag in jaar 10 is, maar de positieve contante meerwaarde boven de gekozen rendementseis op basis van de volledige doorgerekende kasstroomreeks.
+
+Bij een exit-BAR-scenario moet de toelichting concreet de gebruikte jaarhuur voor verkoopwaardering, exit-BAR, berekende verkoopwaarde, verkoopkosten, restschuld en netto verkoopopbrengst aan elkaar verbinden.
+
+De genoemde Waalhaven-cijfers zijn illustratief voor de UX-eis en vervangen de golden testcase niet.
+
+## 26. Aflossingstermijnen — uitbreiding
+
+Wanneer aflossing wordt geactiveerd, bied snelle looptijdkeuzes:
+- 10 jaar;
+- 15 jaar;
+- 20 jaar;
+- 25 jaar;
+- 30 jaar;
+- Anders.
+
+**Anders** maakt handmatige invoer mogelijk.
+
+De productdefault voor financiering blijft aflossingsvrij. De looptijdkeuzes veranderen die default niet.
+
+Aflossing blijft afzonderlijk zichtbaar van exploitatiekosten en verlaagt cashflow terwijl zij eigen vermogen opbouwt.
+
+## 27. Aanvulling Definition of Done
+
+Naast de eerdere eisen geldt nu ook:
+- relevante financiële/fiscale begrippen hebben een korte info-uitleg in de UI;
+- NCW wordt begrijpelijk als contante meerwaarde t.o.v. rendementseis uitgelegd en niet als eindwaarde;
+- exit-BAR en jaarhuur voor verkoopwaardering zijn voorzien van context;
+- aflossing ondersteunt 10/15/20/25/30 jaar en Anders;
+- uitgebreide rapportage bevat onderaan **Toelichting op de berekening**;
+- deze toelichting gebruikt de concrete scenario-output;
+- rapportagecijfers komen uitsluitend uit dezelfde deterministische engine als het dashboard;
+- geen generatieve herberekening of verzonnen waarden;
+- toelichting past zich aan aan de daadwerkelijk gebruikte scenario-onderdelen.
