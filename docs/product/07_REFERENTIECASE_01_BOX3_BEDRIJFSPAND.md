@@ -236,3 +236,13 @@ De nieuwsfeed ondersteunt de betrouwbaarheid en actualiteit van VastgoedPulse: g
 - Golden tests vergelijken ongeronde interne uitkomsten met een kleine technische tolerantie om floating-pointverschillen niet als functionele fout te behandelen.
 
 Met deze besluiten zijn de eerder openstaande rekenkeuzes uit paragraaf 10 functioneel afgesloten.
+
+
+## 13. Definitieve aannames peildatum en waardering
+
+- Fiscale start/peildatum van deze eerste versie: **1 januari**; het object wordt geacht op die datum reeds in bezit te zijn.
+- Geen modellering van aankoop gedurende het jaar of deeljaarberekeningen.
+- Toekomstige fiscale/objectwaarde: standaard **2,0% jaarlijkse waardeontwikkeling**, door gebruiker aanpasbaar.
+- Deze fiscale/projectiewaarde wordt alleen gebruikt voor de toekomstige Box 3-projectie.
+- Verkoopwaarde/eindwaarde van bedrijfsmatig vastgoed blijft uitsluitend gebaseerd op de gekozen **exit-BAR**.
+- De UI benoemt beide waarden afzonderlijk om vermenging te voorkomen.
