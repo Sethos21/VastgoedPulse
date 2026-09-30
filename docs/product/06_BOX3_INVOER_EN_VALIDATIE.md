@@ -177,3 +177,20 @@ Google AI Studio mag niet:
 - verlies/negatief werkelijk rendement;
 - referentietestcases tegen voorbeelden van de Belastingdienst;
 - jaarlijkse updateprocedure fiscale configuratie.
+
+
+## 10. Latere scopecorrectie — leidend boven eerdere persoonlijke Box 3-invoer
+
+De eerdere passages in dit document over fiscale partner, banktegoeden, overige bezittingen en overige schulden zijn voor de huidige VastgoedPulse Box 3-module **vervallen**. De huidige module simuleert uitsluitend één object plus de rechtstreeks bijbehorende financiering. De uitkomst heet **Box 3-effect objectscenario** en niet persoonlijke of definitieve Box 3-belasting.
+
+### Peildatum
+- De eerste versie veronderstelt dat het object op **1 januari** van het belastingjaar reeds in bezit is.
+- Aankoop gedurende het belastingjaar, deeljaren en proratering worden in deze versie niet gemodelleerd.
+- De UI maakt deze aanname zichtbaar waar dit nodig is voor interpretatie van de fiscale projectie.
+
+### Toekomstige fiscale/objectwaarde
+- Voor toekomstige Box 3-jaren gebruikt de projectie standaard **2,0% jaarlijkse waardeontwikkeling**, aanpasbaar door de gebruiker.
+- Deze projectiewaarde dient uitsluitend voor de toekomstige fiscale/objectwaardereeks in het Box 3-scenario.
+- Zij bepaalt **niet** de verkoopwaarde.
+- Voor bedrijfsmatig vastgoed wordt de verwachte verkoopwaarde aan het einde van de analyseperiode bepaald via de vastgestelde **exit-BAR-methode**.
+- De UI onderscheidt daarom expliciet **verwachte fiscale/objectwaarde** van **verwachte verkoopwaarde**.
