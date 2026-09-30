@@ -105,6 +105,8 @@ Voor beide routes worden definities zoveel mogelijk gelijk gehouden:
 - vastgoedwaarde per jaar;
 - resterende schuld per jaar;
 - opgebouwd eigen vermogen;
+- aflossing/vermogensopbouw afzonderlijk van operationele cashflow;
+- restschuld bij einde looptijd/verkoop;
 - netto verkoopopbrengst;
 - totaal netto resultaat over de beleggingsperiode.
 
@@ -177,3 +179,16 @@ Waardegroei mag niet als agressieve generieke aanname het berekende rendement do
 - Waardegroei blijft een aanname en wordt nooit als gegarandeerd rendement gepresenteerd.
 
 Doel: voorkomen dat NCW, IRR en totaalrendement kunstmatig aantrekkelijk worden door een te optimistische waardegroei of verkoopwaarde.
+
+
+## 11. Referentiecase financiering — correctie
+
+Voor de leidende referentiecase van het fictieve bedrijfspand geldt voortaan:
+- koopsom: €1.000.000;
+- lening: €600.000;
+- rente: 4,5%;
+- **standaard volledig aflossingsvrij**;
+- restschuld na 10 jaar bij ongewijzigde lening: €600.000;
+- aflossing wordt alleen als alternatief gebruikersscenario doorgerekend.
+
+De eerder gebruikte standaard van €30.000 lineaire aflossing per jaar is **vervallen als leidend uitgangspunt** en mag niet als productdefault worden gebruikt.
