@@ -150,3 +150,35 @@ Eerste ontwerpvolgorde:
 8. audit trail en beslissingssamenvatting.
 
 Deze volgorde is een ontwerpvoorstel en nog geen implementatieplanning.
+
+
+## 14. Functioneel kader aankoop- en financieringsbeslissing
+
+### 14.1 Primaire gebruiker
+De primaire eindgebruiker is de **vastgoedbelegger die een object overweegt aan te kopen**.
+
+### 14.2 Primair beslismoment
+De functionaliteit ondersteunt in eerste instantie de **aankoopbeslissing**. De analyse moet de belegger in staat stellen de financiële kwaliteit en financierbaarheid van de voorgenomen aankoop te beoordelen.
+
+### 14.3 Financieringsdoel
+Naast de interne investeringsanalyse moet de onderbouwing bruikbaar zijn als basis voor een gesprek met **banken en vastgoedfinanciers**. De analyse moet daarom inzicht geven in zowel het rendement voor de belegger als de kwaliteit van het object en de kasstromen vanuit financieringsperspectief, waaronder voldoende waarde/onderpand en draagkracht van de financiering.
+
+Dit betekent niet dat VastgoedPulse automatisch concludeert dat een financiering acceptabel is. De module levert een transparante, navolgbare financiële onderbouwing waarop belegger en financier hun eigen beoordeling kunnen baseren.
+
+### 14.4 Rapportage — fase 1
+De eerste rapportagevorm wordt een **intern beslisrapport voor de belegger**. Dit rapport brengt de relevante aannames, aankoop, financiering, exploitatie, rendement, risico's/scenario's en waarde/exit samen tot één navolgbare analyse.
+
+Een formele, specifiek op banken/vastgoedfinanciers ingerichte financieringsrapportage is een mogelijke vervolgfase en wordt pas ontworpen nadat het interne beslisrapport functioneel is vastgesteld.
+
+### 14.5 Nog uit te werken
+De volgende ontwerpstap is het functioneel uitwerken van de financieringsanalyse, waaronder:
+- één of meerdere financieringsscenario's per aankoop;
+- financieringspercentage/LTV;
+- rente, looptijd en aflossingsstructuur;
+- schuldontwikkeling en restschuld;
+- kasstroom na financieringslasten;
+- DSCR en andere relevante financieringsratio's;
+- waarde en onderpand in relatie tot de financiering;
+- invloed van de financieringsstructuur op eigen inleg, cashflow, NCW en IRR.
+
+Deze punten zijn ontwerpvragen en nog geen vastgestelde implementatie-eisen.
