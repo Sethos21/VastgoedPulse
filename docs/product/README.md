@@ -26,4 +26,12 @@ Documenten maken waar relevant onderscheid tussen:
 - `03_KLANTREIS_EN_BETAALTRIGGERS.md`
 - `04_MONETISATIE_EN_ABONNEMENTEN.md`
 
-Deze documenten worden pas inhoudelijk ingevuld zodra de betreffende keuzes zijn besproken en vastgesteld.
+- `05_PRO_NETTO_RENDEMENTSANALYSE.md`
+
+## Huidige status
+- `02_FREE_VERSUS_PRO.md` — **Vastgesteld**: productladder Anoniem → Free → Pro, zachte Pro-paywall en startprijs €5 per maand.
+- `05_PRO_NETTO_RENDEMENTSANALYSE.md` — **Functionele basis vastgesteld**: netto rendementsanalyse voor Privé/Box 3 en BV, inclusief fiscale configuratie 2026 en uitgangspunten voor NCW/IRR, cashflow en verkoop.
+- `01_PRODUCTVISIE_EN_DOELGROEP.md`, `03_KLANTREIS_EN_BETAALTRIGGERS.md` en `04_MONETISATIE_EN_ABONNEMENTEN.md` worden inhoudelijk ingevuld zodra de betreffende keuzes volledig zijn vastgesteld.
+
+## Implementatiegate
+Vastgestelde productdocumentatie is leidend voor toekomstige bouwopdrachten. Voor de Pro-netto-rendementsanalyse moeten exacte formules, fiscale uitzonderingen, validatieregels en referentietests nog expliciet worden vastgesteld vóór implementatie; Google AI Studio mag deze logica niet zelfstandig invullen.
