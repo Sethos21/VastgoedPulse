@@ -243,3 +243,10 @@ Voor Referentiecase 01:
 - geen directe waardeverhoging als aparte aanname in deze testcase.
 
 Doel: in één referentiecase testen dat huurimpact, aanvullende financiering, operationele cashflow, fiscale verwerking en exit-BAR correct samenwerken zonder dubbeltelling.
+
+
+## 13. Scopecorrectie Box 3-module
+
+Voor de eerstvolgende implementatiefase wordt uitsluitend de **privé/Box 3-module** gebouwd. De BV-route blijft productmatig gewenst, maar wordt later als afzonderlijke module ontworpen en geïmplementeerd. De Box 3-module vraagt geen fiscale partner, banktegoeden, overige bezittingen of overige schulden. Zij berekent bewust één vastgoedobject plus de rechtstreeks bijbehorende financiering en presenteert dit als een **Box 3-effect objectscenario**.
+
+Voor bedrijfsmatig vastgoed is **exit-BAR de leidende verkoopwaardemethode**. Jaarlijkse waardeontwikkeling wordt niet gebruikt om de verkoopwaarde te bepalen.
