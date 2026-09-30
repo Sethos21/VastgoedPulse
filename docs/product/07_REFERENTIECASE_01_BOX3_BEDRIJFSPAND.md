@@ -142,3 +142,59 @@ Google AI Studio mag de Box 3-rekenmotor pas als correct beschouwen wanneer mini
 - NCW.
 
 Afwijkingen door presentatieafronding zijn toegestaan; afwijkingen in de onderliggende formulelogica niet.
+
+
+## 10. Aanvullende vastgestelde reken- en presentatieregels
+
+### Rente
+- De door de gebruiker ingevoerde/geldende rente blijft gedurende de volledige analyseperiode gelijk.
+- VastgoedPulse modelleert geen toekomstige renteontwikkeling, renteherziening of rentecurve.
+- Dit geldt ook wanneer de analyseperiode langer is dan een eventuele feitelijke rentevaste periode: de calculator is een scenarioanalyse op basis van de ingevoerde rente.
+
+### Afronding
+- Bedragen worden in de gebruikersinterface weergegeven in **hele euro's, zonder decimalen**.
+- Percentage-invoer en rendementspercentages mogen hun functioneel benodigde precisie behouden; geldbedragen worden als hele bedragen gepresenteerd.
+- De interne rekenmotor mag met hogere precisie rekenen om cumulatieve afrondingsfouten te voorkomen; afronding voor presentatie vindt plaats op het eind van een rekenstap/resultaatweergave.
+
+### Nog af te tikken rekenkeuzes
+De resterende functionele keuzes worden één voor één vastgesteld:
+1. exit-BAR: invoer/default/aanpasbaarheid;
+2. leegstand en huuruitval;
+3. automatische vergelijking forfaitair versus werkelijk rendement;
+4. technische afrondingsvolgorde voor golden tests.
+
+Renteontwikkeling is hiermee afgesloten en wordt niet verder ontworpen.
+
+## 11. Actuele nieuwsfeed op de Box 3-pagina
+
+De Box 3-module krijgt een compacte, inhoudelijk gefilterde nieuwsfeed met uitsluitend ontwikkelingen die relevant kunnen zijn voor de berekening of vastgoedbelegger.
+
+### Onderwerpen
+- Box 3;
+- overdrachtsbelasting;
+- relevante vastgoedfiscaliteit;
+- relevante verhuurwetgeving;
+- verduurzamingsregelingen en wettelijke verduurzamingsverplichtingen;
+- andere wettelijke/fiscale besluiten die rechtstreeks invloed kunnen hebben op de analyse.
+
+### Bronbeleid
+Voorkeur voor primaire/officiële bronnen, waaronder:
+- Rijksoverheid;
+- Belastingdienst;
+- officiële wet- en regelgeving/parlementaire besluitvorming waar relevant.
+
+Geen algemene vastgoednieuwsfeed en geen nieuws puur ter vulling van de pagina.
+
+### Weergave per bericht
+Minimaal:
+- datum;
+- korte titel;
+- samenvatting in maximaal enkele regels;
+- indicatie van mogelijke impact op de berekening;
+- link naar de officiële bron;
+- statuslabel waar toepasselijk, bijvoorbeeld **Voorstel**, **Aangenomen** of **Definitief / in werking**.
+
+Een voorstel of beleidsvoornemen mag nooit als geldend recht worden gepresenteerd.
+
+### Doel
+De nieuwsfeed ondersteunt de betrouwbaarheid en actualiteit van VastgoedPulse: gebruikers kunnen zien welke recente besluiten of wijzigingen mogelijk invloed hebben op de aannames en fiscale parameters van hun vastgoedanalyse.
