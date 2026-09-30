@@ -158,3 +158,22 @@ Deze functionele basis is vastgesteld. Nog niet vastgesteld zijn:
 - jaarlijkse beheerprocedure voor fiscale parameters.
 
 Google AI Studio mag deze onderdelen niet zelfstandig invullen. Ze worden eerst expliciet gespecificeerd en getest.
+
+
+## 10. Waardegroei en eindwaarde — vastgesteld ontwerpbesluit
+
+Waardegroei mag niet als agressieve generieke aanname het berekende rendement domineren.
+
+- Woningen en bedrijfsmatig vastgoed krijgen niet automatisch dezelfde standaardaanname voor waardegroei.
+- Voor bedrijfsmatig vastgoed wordt een conservatieve uitgangswaarde gehanteerd; als eerste productdefault geldt **2,0% per jaar**, volledig aanpasbaar door de gebruiker.
+- Toon naast de gekozen aanname minimaal scenario's van **0%, 2% en 4%** om de gevoeligheid zichtbaar te maken.
+- Splits het totale rendement zichtbaar uit naar minimaal:
+  - operationele huur/cashflow;
+  - aflossing/vermogensopbouw;
+  - waardeverandering.
+- Een hoge eindwaarde mag niet alleen impliciet ontstaan door samengestelde jaarlijkse waardegroei.
+- Voor bedrijfsmatig beleggingsvastgoed moet een **exit-yield/BAR-benadering** als alternatieve/aanvullende eindwaardemethode worden ondersteund of voorbereid.
+- De UI maakt duidelijk welke eindwaardemethode en aanname de gebruiker bekijkt.
+- Waardegroei blijft een aanname en wordt nooit als gegarandeerd rendement gepresenteerd.
+
+Doel: voorkomen dat NCW, IRR en totaalrendement kunstmatig aantrekkelijk worden door een te optimistische waardegroei of verkoopwaarde.
