@@ -27,7 +27,8 @@ Documenten maken waar relevant onderscheid tussen:
 - `04_MONETISATIE_EN_ABONNEMENTEN.md`
 
 - `05_PRO_NETTO_RENDEMENTSANALYSE.md`
-- `09_ONTWERP_BESLISSINGSONDERSTEUNING_EN_SCENARIOANALYSE.md` — **Ontwerp/backlog**: scenariovergelijking, break-evenanalyse, financieringsverdieping, gevoeligheid en beslissingsondersteuning; nog geen implementatieopdracht.
+- `09_ONTWERP_BESLISSINGSONDERSTEUNING_EN_SCENARIOANALYSE.md` — **Ontwerp/backlog**: scenariovergelijking, break-evenanalyse, financieringsverdieping, aanbod/URL-import, gevoeligheid en beslissingsondersteuning.
+- `10_AI_STUDIO_UITVOERINGSPLAN_BESLISSINGSONDERSTEUNING.md` — **Gefaseerde bouwreeks**: genummerde, delta-gebaseerde AI Studio-prompts met expliciete test/akkoord-gate tussen iedere stap.
 
 ## Huidige status
 - `02_FREE_VERSUS_PRO.md` — **Vastgesteld**: productladder Anoniem → Free → Pro, zachte Pro-paywall en startprijs €5 per maand.
