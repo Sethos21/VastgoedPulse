@@ -305,25 +305,37 @@ ICR:
 - aanvullend kengetal;
 - niet primair bepalend voor maximale financiering.
 
-## 18. Marktscenario's voor investeringsrobustheid
+## 18. Marktscenario's voor investeringsrobustheid — vastgesteld voor Prompt 09
 
-Naast financieringsscenario's worden drie marktscenario's onderzocht:
-- **zwak**;
-- **redelijk / basis**;
-- **uitstekend**.
+**Status:** functionele uitgangspunten vastgesteld; implementatie uitsluitend na vrijgave Prompt 09.
 
-De gebruiker vult het basisscenario in. Zwak en uitstekend worden automatisch afgeleid met vooraf vastgestelde bandbreedtes om de invoer eenvoudig te houden.
+Drie scenario's: **zwak**, **redelijk (basis)** en **uitstekend**. Basis gebruikt exact de actuele invoer van de gebruiker. Zwak en uitstekend worden automatisch afgeleid van de basis; geen nieuwe fiscale of financiële rekenengine.
 
-Mogelijke variabelen:
-- huurontwikkeling;
-- leegstand / huuruitval;
-- exit-BAR;
-- exploitatiekosten;
-- relevante investeringen.
+| Variabele | Zwak | Redelijk | Uitstekend |
+|---|---|---|---|
+| Huurindexatie (procent per jaar) | basis − 1 procentpunt | basis | basis + 1 procentpunt |
+| Verwachte huuruitval | basis + 5 procentpunt | basis | basis − 2 procentpunt |
+| Exit-BAR | basis + 0,5 procentpunt | basis | basis − 0,5 procentpunt |
+| Exploitatiekosten | basis + 2 procentpunt | basis | basis − 2 procentpunt |
 
-Per scenario moeten naast de rekenuitkomsten ook de belangrijkste **sterktes, zwaktes en risicofactoren** inzichtelijk worden gemaakt.
+**Grenzen:** huuruitval begrenzen op 0–100%; huurindexatie mag negatief zijn; exit-BAR moet strikt positief blijven. Exploitatiekostenpercentage mag niet negatief worden; gebruik de bestaande invoervalidatie voor de bovengrens. Ongeldige scenario-uitkomsten niet stilzwijgend forceren: toon een begrijpelijke validatiemelding.
 
-VastgoedPulse geeft hierbij geen automatisch koop-/niet-kopenadvies.
+**Voorbeeld:** basis 2% huurindexatie, 0% huuruitval, 8% exit-BAR en 15% exploitatiekosten levert zwak 1% / 5% / 8,5% / 17%, redelijk 2% / 0% / 8% / 15%, uitstekend 3% / 0% / 7,5% / 13%.
+
+**Ongewijzigd in alle scenario's:** aankoopprijs, financieringsstructuur/rente/aflossing, investeringen en uitvoeringstijdstippen, verduurzamingshuur, fiscale/objectwaardegroei, belastingparameters en overige basisinvoer. De drie scenario's vergelijken uitsluitend de vier vastgestelde marktvariabelen.
+
+**Bediening:** automatisch gegenereerde scenario's; standaardbandbreedtes als vertrekpunt. De gebruiker mag de vier afwijkingen per analyse aanpassen. Aanpassing van de basis herberekent de scenario's met de op dat moment ingestelde afwijkingen. Het basisscenario zelf wordt niet gewijzigd door de vergelijking.
+
+**Resultaten:** vergelijk relevante reeds beschikbare engine-uitkomsten zoals NCW, IRR, netto cashflow, exit-/verkoopwaarde en financieringsratio's indien beschikbaar. Toon de toegepaste afwijkingen naast de resultaten.
+
+**Deterministische toelichting:** alleen signalen die direct uit bestaande uitkomsten volgen:
+- NCW < 0: gekozen rendementseis wordt niet gehaald;
+- IRR < ingestelde NCW-rendementseis: totaalrendement lager dan de eis;
+- laagste DSCR < ingestelde minimale DSCR: financieringsdekking onder de gekozen norm;
+- netto cashflow in enig jaar < 0: aanvullende liquiditeit in dat jaar nodig;
+- afhankelijkheid van exit-BAR: toon de verschillen in verkoopwaarde en NCW tussen de drie scenario's, zonder een ongedocumenteerde risicodrempel te verzinnen.
+
+Toon geen DSCR-signaal als DSCR of de norm niet beschikbaar is. Gebruik neutrale, feitelijke formuleringen voor sterktes, zwaktes en risico's; geef geen automatisch koop-/niet-kopenadvies. Geen AI-gegenereerde nieuwe cijfers.
 
 ## 19. Betaalde What-if- en herfinancieringsfunctie
 
