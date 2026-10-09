@@ -191,6 +191,31 @@ Geen formeel bankrapport bouwen. Geen koop-/niet-kopenadvies genereren.
 
 Test rapport-dataconsistentie alleen voor de nieuw toegevoegde onderdelen. Stop daarna.
 
+## Prompt 13 — Audit financiële percentages, aannames en onderbouwing
+
+Voer een uitsluitend lezende audit uit van de bestaande implementatie en relevante FO-documentatie. Inventariseer **alle** percentages, standaardwaarden, normen en financiële/fiscale aannames die de uitkomsten beïnvloeden, waaronder disconteringsvoet/NCW-rendementseis, indexatie, leegstand/huuruitval, exploitatie- en onderhoudskosten, exit-BAR, waardegroei, verkoopkosten, financieringsrente, LTV/DSCR/Debt Yield/ICR-normen, inflatie, Box 3 en scenario-opslagen. De lijst is niet limitatief.
+
+Rapporteer **per waarde** in een overzichtelijke tabel:
+- gebruikte waarde, eenheid en waar toegepast;
+- herkomst: gebruikersinvoer, berekend, expliciete ontwerpbeslissing, technische default of onbewezen aanname;
+- formule/vaststellingswijze, relevante bestandsnaam en functie;
+- concrete onderbouwing en verifieerbare bron met peildatum, indien aanwezig;
+- of de gebruiker de waarde kan aanpassen en welke KPI's worden beïnvloed;
+- beoordeling: aantoonbaar onderbouwd, alleen ontwerpbesluit, gebruikersinvoer, technische default of niet onderbouwd;
+- eventuele aanbevolen vervolgactie, zonder deze uit te voeren.
+
+Maak daarnaast een geprioriteerde lijst van niet-onderbouwde aannames, ontbrekende bronnen, mogelijk onjuiste of verouderde percentages en potentiële inconsistenties. Geef prioriteit aan de impact op NCW, IRR, kasstromen en financierbaarheid. **Verzin geen bronnen, marktconformiteit, normen of percentages.** Als actualiteit of marktconformiteit niet verifieerbaar is, vermeld dat expliciet.
+
+Wijzig geen code, waarden of documentatie; voer geen onnodige tests uit. Lever alleen het auditrapport, stop en wacht op expliciete beoordeling en akkoord. Los van de lopende Prompt 10: deze prompt pas uitvoeren na afzonderlijke vrijgave en voltooiing van eerdere prompts.
+
+## Prompt 14 — Volledig berekeningsoverzicht KPI's
+
+Bouw na goedkeuring van de audit een afzonderlijke pagina **Berekeningsoverzicht**, volledig uitgeklapt, met een inhoudsopgave en springlinks per KPI. Toon per relevante KPI de werkelijke invoerwaarden, gebruikte percentages en hun herkomst/onderbouwing, formule, tussenstappen en eindresultaat. Neem onder meer huur, leegstand, exploitatiekosten, NOI, BAR/NAR, NCW met verdisconteerde jaarkasstromen, IRR met jaarkasstromen en exit, financierings-KPI's, scenario's en break-even mee voor zover geïmplementeerd.
+
+Alle getoonde uitkomsten moeten exact aansluiten op dashboard en rapportage. **Hergebruik uitsluitend de bestaande centrale deterministische rekenengine en scenario-output; bouw geen parallelle rekenlogica.** Waar benodigde tussenwaarden niet beschikbaar zijn, breid de transparante output gericht uit zonder alternatieve berekeningen. Houd bestaande KPI-tooltips ongewijzigd. Voorzie PDF-export en maak het overzicht geschikt als bijlage bij het interne investeringsrapport.
+
+Vermeld ontbrekende onderbouwingen uit Prompt 13 zichtbaar als zodanig; presenteer onbewezen aannames nooit als gevalideerde marktgegevens. Test gericht de aansluiting op bestaande KPI-uitkomsten, PDF-export en de weergave. Stop na uitvoering en wacht op akkoord.
+
 ## Gate
 
 Een volgende prompt wordt pas uitgevoerd nadat de gebruiker de vorige implementatie heeft getest en expliciet heeft vrijgegeven.
